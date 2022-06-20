@@ -1,9 +1,5 @@
-# flake8: noqa
-
-from rdkit import Chem
 from typing import List, Tuple, Union, Dict, Set, Sequence
-import deepchem as dc
-from deepchem.utils.typing import RDKitAtom
+from deepchem.utils.typing import RDKitAtom, RDKitMol, RDKitBond
 
 from deepchem.utils.molecule_feature_utils import one_hot_encode
 from deepchem.utils.molecule_feature_utils import get_atom_total_degree_one_hot
@@ -104,7 +100,7 @@ def get_atom_mass(atom: RDKitAtom) -> List[float]:
 
 
 def atom_features(
-    atom: Chem.rdchem.Atom,
+    atom: RDKitAtom,
     functional_groups: List[int] = None,
     only_atom_num: bool = False) -> Sequence[Union[bool, int, float]]:
   """Helper method used to compute atom feature vector.
@@ -173,7 +169,7 @@ def atom_features(
   return features
 
 
-def bond_features(bond: Chem.rdchem.Bond) -> Sequence[Union[bool, int, float]]:
+def bond_features(bond: RDKitBond) -> Sequence[Union[bool, int, float]]:
   """wrapper function for bond_features() already available in deepchem, used to compute bond feature vector.
 
   Parameters
@@ -207,8 +203,8 @@ def bond_features(bond: Chem.rdchem.Bond) -> Sequence[Union[bool, int, float]]:
 
 
 def map_reac_to_prod(
-    mol_reac: Chem.Mol,
-    mol_prod: Chem.Mol) -> Tuple[Dict[int, int], List[int], List[int]]:
+    mol_reac: RDKitMol,
+    mol_prod: RDKitMol) -> Tuple[Dict[int, int], List[int], List[int]]:
   """
   Function to build a dictionary of mapping atom indices in the reactants to the products.
 
