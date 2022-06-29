@@ -2868,11 +2868,11 @@ class ImageDataset(Dataset):
     if isinstance(self._X, np.ndarray):
       X = self._X[indices]
     else:
-      X = [self._X[i] for i in indices]
+      X: List[str] = [self._X[i] for i in indices]
     if isinstance(self._y, np.ndarray):
       y = self._y[indices]
     else:
-      y = [self._y[i] for i in indices]
+      y: List[str] = [self._y[i] for i in indices]
     w = self._w[indices]
     ids = self._ids[indices]
     return ImageDataset(X, y, w, ids)
